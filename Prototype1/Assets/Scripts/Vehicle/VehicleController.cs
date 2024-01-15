@@ -5,9 +5,16 @@ namespace VehicleSpace
     public sealed class VehicleController : MonoBehaviour
     {
         [Space(20)]
-        [Header("VehicleTransforms")]
+        [Header("FirstVehicle")]
         [SerializeField] private Transform fiirstVehicleTransform;
+        [SerializeField] private Rigidbody firstRb;
+        [SerializeField] private int firstHorsePower = 300;
+
+        [Space(20)]
+        [Header("SecondVehicle")]
         [SerializeField] private Transform secondVehicleTransform;
+        [SerializeField] private Rigidbody secondRb;
+        [SerializeField] private int secondHorsePower = 300;
 
         private Transform vehicleTransform;
 
@@ -18,8 +25,8 @@ namespace VehicleSpace
 
         private void Awake()
         {
-            firstVehicleEngine = new VehicleEngine(fiirstVehicleTransform);
-            secondVehicleEngine = new VehicleEngine(secondVehicleTransform);
+            firstVehicleEngine = new VehicleEngine(fiirstVehicleTransform, firstRb, firstHorsePower);
+            secondVehicleEngine = new VehicleEngine(secondVehicleTransform, secondRb, secondHorsePower);
 
             commandController = new CommandController(firstVehicleEngine, secondVehicleEngine);
         }
